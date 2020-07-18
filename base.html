@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <!--begin::Head-->
+    <head>
+        <meta charset="utf-8"/>
+        <title>{{ botname }} | {% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <!--begin::Fonts-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+        <!--end::Fonts-->
+        <!--begin::Page Vendors Styles(used by this page)-->
+        <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <!--end::Page Vendors Styles-->
+        <!--begin::Global Theme Styles(used by all pages)-->
+        <link href="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://static.shkong.com/templates/met_11/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <!--end::Global Theme Styles-->
+        <link rel="shortcut icon" href="https://static.shkong.com/templates/met_11/assets/media/logos/favicon.ico"/>
+        {% block header %}
+        {% endblock %}
+    </head>
+    <!--end::Head-->
+    <!--begin::Body-->
+    <body  id="kt_body"  class="header-fixed header-mobile-fixed page-loading">
+    	<!--begin::Main-->
+	    <div class="d-flex flex-column flex-root">
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+				<!--begin::Header Mobile-->
+                <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed " >
+                    <!--begin::Logo-->
+                    <a href="/yobot/user/">
+                        <img alt="Logo" src="https://static.shkong.com/templates/met_11/assets/media/logos/logo-letter-12.png" class="max-h-30px"/>
+                    </a>
+                    <!--end::Logo-->
+
+                    <!--begin::Toolbar-->
+                    <div class="d-flex align-items-center">
+                        <button class="btn p-0 burger-icon burger-icon-left" id="kt_header_mobile_toggle">
+                            <span></span>
+                        </button>
+                    </div>
+                    <!--end::Toolbar-->
+                </div>
+                <!--end::Header Mobile-->
+
+				<!--begin::Header-->
+                <div id="kt_header" class="header flex-column  header-fixed " >
+                    <!--begin::Top-->
+                    <div class="header-top">
+                        <!--begin::Container-->
+                        <div class=" container ">
+                            <!--begin::Left-->
+                            <div class="d-none d-lg-flex align-items-center mr-3">
+                                <!--begin::Logo-->
+                                <a href="/yobot/user/" class="mr-20">
+                                    <img alt="Logo" src="https://static.shkong.com/templates/met_11/assets/media/logos/logo-letter-12.png" class="max-h-40px"/>
+                                </a>
+                                <!--end::Logo-->
+                            </div>
+                            <!--end::Left-->
+		</div>
+		<!--end::Container-->
+	</div>
+	<!--end::Top-->
+
+	<!--begin::Bottom-->
+	<div class="header-bottom" id="kt_header_bottom">
+		<!--begin::Container-->
+		<div class=" container   d-flex flex-column">
+			<!--begin::Tab Navs(for desktop mode)-->
+			<ul class="header-tabs nav flex-column-auto" role="tablist">
+				<!--begin::Item-->
+				<li class="nav-item">
+					<a href="#" class="nav-link active" data-toggle="tab" data-target="#yobot_header_tab_1" role="tab">
+						<span class="nav-title text-uppercase">Home</span>
+						<span class="nav-desc">Dashboard</span>
+					</a>
+				</li>
+				<!--end::Item-->
+
+				<!--begin::Item-->
+				<li class="nav-item">
+					<a href="#" class="nav-link" data-toggle="tab" data-target="#yobot_header_tab_2" role="tab">
+						<span class="nav-title text-uppercase">个人中心</span>
+						<span class="nav-desc">Personal Center</span>
+					</a>
+				</li>
+				<!--end::Item-->
+
+				<!--begin::Item-->
+				<li class="nav-item">
+					<a href="#" class="nav-link" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
+						<span class="nav-title text-uppercase">工会管理</span>
+						<span class="nav-desc">Union Management</span>
+					</a>
+				</li>
+				<!--end::Item-->
+                {% block is_admin %}
+                {% endblock %}
+			</ul>
+			<!--begin::Tab Navs-->
+
+			<!--begin::Header Menu Wrapper-->
+			<div class="header-navs header-navs-left flex-column-fluid" id="kt_header_navs">
+				<!--begin::Tab Content-->
+				<div class="tab-content">
+					<!--begin::Tab Pane-->
+					<div class="tab-pane show active" id="yobot_header_tab_1">
+						<!--begin::Menu-->
+						<div class="header-menu header-menu-mobile  header-menu-layout-default " >
+							<!--begin::Nav-->
+							<ul class="menu-nav ">
+								<li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/user/" class="menu-link ">
+										<span class="menu-text">Dashboard</span>
+									</a>
+								</li>
+							</ul>
+							<!--end::Nav-->
+						</div>
+						<!--end::Menu-->
+					</div>
+					<!--begin::Tab Pane-->
+
+					<!--begin::Tab Pane-->
+					<div class="tab-pane  justify-content-between" id="yobot_header_tab_2" >
+						<div class="header-menu header-menu-mobile  header-menu-layout-default">
+							<!--begin::Nav-->
+							<ul class="menu-nav ">
+								<li class="menu-item"  aria-haspopup="true">
+									<a  href="{{ url_for('yobot_user_info', qqid=user.qqid) }}" class="menu-link ">
+										<span class="menu-text">个人信息</span>
+									</a>
+								</li>
+                                <li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/user/reset-password/" class="menu-link ">
+										<span class="menu-text">修改密码</span>
+									</a>
+								</li>
+							</ul>
+							<!--end::Nav-->
+						</div>
+
+						<div class="d-flex align-items-center">
+							<!--begin::Actions-->
+				            <a href="/yobot/logout/" class="btn btn-dark font-weight-bold my-2 my-lg-0">
+				            	Logout
+				            </a>
+				            <!--end::Actions-->
+						</div>
+					</div>
+					<!--begin::Tab Pane-->
+
+                    <!--begin::Tab Pane-->
+					<div class="tab-pane" id="yobot_header_tab_3">
+                        <div class="header-menu header-menu-mobile  header-menu-layout-default" id="kt_header_menu">
+							<!--begin::Nav-->
+							<ul class="menu-nav ">
+								<li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/clan/{{ group_id }}/" class="menu-link ">
+										<span class="menu-text">BOSS状态</span>
+									</a>
+								</li>
+                                <li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/clan/{{ group_id }}/subscribers/" class="menu-link ">
+										<span class="menu-text">出刀预约</span>
+									</a>
+								</li>
+                                <li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/clan/{{ group_id }}/progress/" class="menu-link ">
+										<span class="menu-text">工会记录</span>
+									</a>
+								</li>
+								<li class="menu-item  menu-item-submenu menu-item-rel"  data-menu-toggle="click" aria-haspopup="true">
+								    <a  href="javascript:;" class="menu-link menu-toggle">
+                                        <span class="menu-text">统计信息</span>
+                                        <span class="menu-desc"></span>
+                                        <i class="menu-arrow"></i>
+                                    </a>
+                                    <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                        <ul class="menu-subnav">
+											<li class="menu-item "  aria-haspopup="true">
+                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/" class="menu-link ">
+                                                    <span class="menu-text">数据分析</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item "  aria-haspopup="true">
+                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/1/" class="menu-link ">
+                                                    <span class="menu-text">出刀顺序表</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item "  aria-haspopup="true">
+                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/2/" class="menu-link ">
+                                                    <span class="menu-text">数据图表</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item "  aria-haspopup="true">
+                                                <a target="_blank" href="" class="menu-link ">
+                                                    <span class="menu-text">多维度分析</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item"  aria-haspopup="true">
+									<a  href="/yobot/clan/{{ group_id }}/{{ user.qqid }}/" class="menu-link ">
+										<span class="menu-text">个人记录</span>
+									</a>
+								</li>
+							</ul>
+							<!--end::Nav-->
+						</div>
+					</div>
+					<!--begin::Tab Pane-->
+
+                    <!--begin::Tab Pane-->
+					<div class="tab-pane justify-content-between" id="yobot_header_tab_4">
+						<div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+							<!--begin::Actions-->
+				            <a href="/yobot/admin/setting/" class="btn btn-light font-weight-bold mr-3 my-2 my-lg-0">
+				                Yobot设置
+				            </a>
+				            <a href="/yobot/admin/users/" class="btn btn-light font-weight-bold my-2 my-lg-0">
+				                用户管理
+				            </a>
+                            <a href="/yobot/admin/groups/" class="btn btn-light font-weight-bold my-2 my-lg-0">
+				                群组管理
+				            </a>
+				            <!--end::Actions-->
+						</div>
+					</div>
+					<!--begin::Tab Pane-->
+
+				</div>
+				<!--end::Tab Content-->
+			</div>
+			<!--end::Header Menu Wrapper-->
+		</div>
+		<!--end::Container-->
+	</div>
+	<!--end::Bottom-->
+</div>
+<!--end::Header-->
+				<!--begin::Container-->
+				<div class="d-flex flex-row flex-column-fluid  container ">
+
+					<!--begin::Content Wrapper-->
+					<div class="main d-flex flex-column flex-row-fluid">
+
+						<div class="content flex-column-fluid" id="kt_content">
+							<!--begin::Dashboard-->
+                            {% block body %}
+                            {% endblock %}
+<!--end::Dashboard-->
+						</div>
+						<!--end::Content-->
+					</div>
+					<!--begin::Content Wrapper-->
+				</div>
+				<!--end::Container-->
+
+				<!--begin::Footer-->
+<div class="footer py-4 d-flex flex-lg-column " id="kt_footer">
+	<!--begin::Container-->
+	<div class=" container  d-flex flex-column flex-md-row align-items-center justify-content-between">
+		<!--begin::Copyright-->
+		<div class="text-dark order-2 order-md-1">
+			<span class="text-muted font-weight-bold mr-2">2020&copy;</span>
+			<a href="https://www.shkong.com/" target="_blank" class="text-dark-75 text-hover-primary">Shkong</a>
+		</div>
+		<!--end::Copyright-->
+
+		<!--begin::Nav-->
+		<div class="nav nav-dark order-1 order-md-2">
+			<a href="https://github.com/Ice-Cirno/HoshinoBot" target="_blank" class="nav-link pl-3 pr-0">Hoshino</a>
+			<a href="https://github.com/yuudi/yobot" target="_blank" class="nav-link pl-3 pr-0">Yobot</a>
+			<a href="https://github.com/shkongzhu/Yobot_template_Demo11" target="_blank" class="nav-link pl-3 pr-0">Template</a>
+			<a href="tencent://message/?uin=915149147&Menu=yes" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
+		</div>
+		<!--end::Nav-->
+	</div>
+	<!--end::Container-->
+</div>
+<!--end::Footer-->
+			</div>
+			<!--end::Wrapper-->
+		</div>
+		<!--end::Page-->
+	</div>
+<!--end::Main-->
+
+                            <!--begin::Scrolltop-->
+<div id="kt_scrolltop" class="scrolltop">
+	<span class="svg-icon"><!--begin::Svg Icon | path:https://static.shkong.com/templates/met_11/assets/media/svg/icons/Navigation/Up-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <rect fill="#000000" opacity="0.3" x="11" y="10" width="2" height="10" rx="1"/>
+        <path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span></div>
+<!--end::Scrolltop-->
+
+        <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
+        <!--begin::Global Config(global config for global JS scripts)-->
+        <script>
+            var KTAppSettings = {
+    "breakpoints": {
+        "sm": 576,
+        "md": 768,
+        "lg": 992,
+        "xl": 1200,
+        "xxl": 1200
+    },
+    "colors": {
+        "theme": {
+            "base": {
+                "white": "#ffffff",
+                "primary": "#6993FF",
+                "secondary": "#E5EAEE",
+                "success": "#1BC5BD",
+                "info": "#8950FC",
+                "warning": "#FFA800",
+                "danger": "#F64E60",
+                "light": "#F3F6F9",
+                "dark": "#212121"
+            },
+            "light": {
+                "white": "#ffffff",
+                "primary": "#E1E9FF",
+                "secondary": "#ECF0F3",
+                "success": "#C9F7F5",
+                "info": "#EEE5FF",
+                "warning": "#FFF4DE",
+                "danger": "#FFE2E5",
+                "light": "#F3F6F9",
+                "dark": "#D6D6E0"
+            },
+            "inverse": {
+                "white": "#ffffff",
+                "primary": "#ffffff",
+                "secondary": "#212121",
+                "success": "#ffffff",
+                "info": "#ffffff",
+                "warning": "#ffffff",
+                "danger": "#ffffff",
+                "light": "#464E5F",
+                "dark": "#ffffff"
+            }
+        },
+        "gray": {
+            "gray-100": "#F3F6F9",
+            "gray-200": "#ECF0F3",
+            "gray-300": "#E5EAEE",
+            "gray-400": "#D6D6E0",
+            "gray-500": "#B5B5C3",
+            "gray-600": "#80808F",
+            "gray-700": "#464E5F",
+            "gray-800": "#1B283F",
+            "gray-900": "#212121"
+        }
+    },
+    "font-family": "Poppins"
+};
+        </script>
+        <!--end::Global Config-->
+
+    	<!--begin::Global Theme Bundle(used by all pages)-->
+    	    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://static.shkong.com/templates/met_11/assets/js/scripts.bundle.js?v=7.0.6"></script>
+				<!--end::Global Theme Bundle-->
+
+                    <!--begin::Page Vendors(used by this page)-->
+                            <script src="https://static.shkong.com/templates/met_11/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
+                        <!--end::Page Vendors-->
+
+                    <!--begin::Page Scripts(used by this page)-->
+                            <script src="https://static.shkong.com/templates/met_11/assets/js/pages/widgets.js?v=7.0.6"></script>
+                        <!--end::Page Scripts-->
+        {% block scripts%}
+        {% endblock %}
+    </body>
+    <!--end::Body-->
+</html>
