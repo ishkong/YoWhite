@@ -68,14 +68,14 @@
 	<!--end::Top-->
 
 	<!--begin::Bottom-->
-	<div class="header-bottom" id="kt_header_bottom">
+	<div class="header-bottom">
 		<!--begin::Container-->
 		<div class=" container   d-flex flex-column">
 			<!--begin::Tab Navs(for desktop mode)-->
 			<ul class="header-tabs nav flex-column-auto" role="tablist">
 				<!--begin::Item-->
 				<li class="nav-item">
-					<a href="#" class="nav-link active" data-toggle="tab" data-target="#yobot_header_tab_1" role="tab">
+					<a href="#" class="nav-link {% block nav1 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_1" role="tab">
 						<span class="nav-title text-uppercase">Home</span>
 						<span class="nav-desc">Dashboard</span>
 					</a>
@@ -84,7 +84,7 @@
 
 				<!--begin::Item-->
 				<li class="nav-item">
-					<a href="#" class="nav-link" data-toggle="tab" data-target="#yobot_header_tab_2" role="tab">
+					<a href="yobot/user/{{ qqid }}/" class="nav-link {% block nav2 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_2" role="tab">
 						<span class="nav-title text-uppercase">个人中心</span>
 						<span class="nav-desc">Personal Center</span>
 					</a>
@@ -93,23 +93,29 @@
 
 				<!--begin::Item-->
 				<li class="nav-item">
-					<a href="#" class="nav-link" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
+					<a href="/yobot/clan/{{ group_id}}/" class="nav-link {% block nav3 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
 						<span class="nav-title text-uppercase">工会管理</span>
 						<span class="nav-desc">Union Management</span>
 					</a>
 				</li>
 				<!--end::Item-->
-                {% block is_admin %}
-                {% endblock %}
+				{% if user.authority_group < 10 -%}
+				<li class="nav-item">
+					<a href="/yobot/admin/" class="nav-link {% block nav4 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_4" role="tab">
+						<span class="nav-title text-uppercase">设置中心</span>
+						<span class="nav-desc">Yobot Management</span>
+					</a>
+				</li>
+				{%- endif %}
 			</ul>
 			<!--begin::Tab Navs-->
 
 			<!--begin::Header Menu Wrapper-->
-			<div class="header-navs header-navs-left flex-column-fluid" id="kt_header_navs">
+			<div class="header-navs header-navs-left flex-column-fluid">
 				<!--begin::Tab Content-->
 				<div class="tab-content">
 					<!--begin::Tab Pane-->
-					<div class="tab-pane show active" id="yobot_header_tab_1">
+					<div class="tab-pane show {% block nav5 %}{% endblock %}" id="yobot_header_tab_1">
 						<!--begin::Menu-->
 						<div class="header-menu header-menu-mobile  header-menu-layout-default " >
 							<!--begin::Nav-->
@@ -127,7 +133,7 @@
 					<!--begin::Tab Pane-->
 
 					<!--begin::Tab Pane-->
-					<div class="tab-pane  justify-content-between" id="yobot_header_tab_2" >
+					<div class="tab-pane  justify-content-between {% block nav6 %}{% endblock %}" id="yobot_header_tab_2" >
 						<div class="header-menu header-menu-mobile  header-menu-layout-default">
 							<!--begin::Nav-->
 							<ul class="menu-nav ">
@@ -156,7 +162,7 @@
 					<!--begin::Tab Pane-->
 
                     <!--begin::Tab Pane-->
-					<div class="tab-pane" id="yobot_header_tab_3">
+					<div class="tab-pane {% block nav7 %}{% endblock %}" id="yobot_header_tab_3">
                         <div class="header-menu header-menu-mobile  header-menu-layout-default" id="kt_header_menu">
 							<!--begin::Nav-->
 							<ul class="menu-nav ">
@@ -184,22 +190,22 @@
                                     <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                         <ul class="menu-subnav">
 											<li class="menu-item "  aria-haspopup="true">
-                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/" class="menu-link ">
+                                                <a href="/yobot/clan/{{ group_id }}/statistics/" class="menu-link ">
                                                     <span class="menu-text">数据分析</span>
                                                 </a>
                                             </li>
                                             <li class="menu-item "  aria-haspopup="true">
-                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/1/" class="menu-link ">
+                                                <a href="/yobot/clan/{{ group_id }}/statistics/1/" class="menu-link ">
                                                     <span class="menu-text">出刀顺序表</span>
                                                 </a>
                                             </li>
                                             <li class="menu-item "  aria-haspopup="true">
-                                                <a target="_blank" href="/yobot/clan/{{ group_id }}/statistics/2/" class="menu-link ">
+                                                <a href="/yobot/clan/{{ group_id }}/statistics/2/" class="menu-link ">
                                                     <span class="menu-text">数据图表</span>
                                                 </a>
                                             </li>
                                             <li class="menu-item "  aria-haspopup="true">
-                                                <a target="_blank" href="" class="menu-link ">
+                                                <a id="pcrd-yobot-fe" href="#" class="menu-link ">
                                                     <span class="menu-text">多维度分析</span>
                                                 </a>
                                             </li>
@@ -218,7 +224,7 @@
 					<!--begin::Tab Pane-->
 
                     <!--begin::Tab Pane-->
-					<div class="tab-pane justify-content-between" id="yobot_header_tab_4">
+					<div class="tab-pane {% block nav8 %}{% endblock %}" id="yobot_header_tab_4">
 						<div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
 							<!--begin::Actions-->
 				            <a href="/yobot/admin/setting/" class="btn btn-light font-weight-bold mr-3 my-2 my-lg-0">
@@ -303,8 +309,6 @@
     </g>
 </svg><!--end::Svg Icon--></span></div>
 <!--end::Scrolltop-->
-
-        <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
         <!--begin::Global Config(global config for global JS scripts)-->
         <script>
             var KTAppSettings = {

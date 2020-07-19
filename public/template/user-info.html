@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}用户信息{% endblock %}
+{% block header %}
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/theme-chalk/index.css">
+{% endblock %}
+{% block nav2 %}active{% endblock %}
+{% block nav6 %}active{% endblock %}
+{% block body %}
+    {% if user.qqid == visitor.qqid or visitor.authority_group < 100 %}
+    <div class="row" id="app">
+        <div class="col-xl-4">
+            <!--begin::Stats Widget 1-->
+            <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-4.svg)">
+                <!--begin::Body-->
+                <div class="card-body">
+                    <p href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">欢迎</p>
+
+                    <div class="font-weight-bold text-success mt-9 mb-5"></div>
+                    <p :hidden="edit" class="text-dark-75 font-weight-bolder font-size-h5 m-0">用户名：[[ nickname ]]<el-button type="primary" size="mini" icon="el-icon-edit" @click="edit=true" circle></el-button></p>
+                    <p :hidden="!edit" class="text-dark-75 font-weight-bolder font-size-h5 m-0">用户名：<el-input v-model="nickname" placeholder="昵称"></el-input><el-button type="success" size="mini" icon="el-icon-check" @click="edit_nickname" circle></el-button></p>
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::Stats Widget 1-->
+        </div>
+        <div class="col-xl-4">
+            <!--begin::Stats Widget 2-->
+            <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-2.svg)">
+                <!--begin::Body-->
+                <div class="card-body">
+                    <p class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">用户权限</p>
+
+                    <div class="font-weight-bold text-success mt-9 mb-5"></div>
+
+                    <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                        [[ authtype[{{ user.authority_group }}] ]]
+                    </p>
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::Stats Widget 2-->
+        </div>
+        <div class="col-xl-4">
+            <!--begin::Stats Widget 3-->
+            <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-1.svg)">
+
+                <!--begin::body-->
+                <div class="card-body">
+                    <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">工会信息</a>
+
+                    <div class="font-weight-bold text-success mt-9 mb-5"></div>
+
+                    <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                        {{ user.clan_group_id }}
+                    </p>
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::Stats Widget 3-->
+        </div>
+    </div>
+    <!--end::Row-->
+    {%- else %}
+    <div class="alert alert-custom alert-outline-2x alert-outline-danger fade show mb-5" role="alert">
+        <div class="alert-icon"><i class="flaticon-warning"></i></div>
+        <div class="alert-text">您无权查看此页面！</div>
+    </div>
+    {%- endif %}
+{% endblock %}
+{% block scripts%}
+    {% if user.qqid == visitor.qqid or visitor.authority_group < 100 %}
+    <script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            addr: [],
+            nickname: '{{ user.nickname }}',
+            edit: false,
+            authtype: {
+                1: '主人',
+                2: '机器人管理员',
+                10: '公会战管理员',
+                100: '成员',
+            },
+        },
+        mounted() {
+            var thisvue = this;
+            axios.get('{{ url_for("yobot_api_iplocation", ip=user.last_login_ipaddr) }}').then(function (res) {
+                thisvue.addr = res.data;
+            }).catch(function (error) {
+                console.log(error);
+                thisvue.addr = ['未知'];
+            });
+        },
+        methods: {
+            edit_nickname: function(event){
+                var thisvue = this;
+                axios.put('{{ url_for("yobot_user_info_nickname", qqid=user.qqid) }}',{nickname: thisvue.nickname}).then(function (res) {
+                    thisvue.edit = false;
+                }).catch(function (error) {
+                    alert('改名失败');
+                    console.log(error);
+                })
+            },
+            from_ts: function(ts) {
+                if (ts == 0) {
+                    return '-';
+                }
+                var nd = new Date();
+                nd.setTime(ts * 1000);
+                return nd.toLocaleString('chinese', { hour12: false });
+            },
+        },
+        delimiters: ['[[', ']]'],
+    })
+    </script>
+    {%- endif %}
+{% endblock %}
+

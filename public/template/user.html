@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}用户面板{% endblock %}
+{% block header %}
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/theme-chalk/index.css">
+{% endblock %}
+{% block nav1 %}active{% endblock %}
+{% block nav5 %}active{% endblock %}
+{% block body %}
+<!--begin::Row-->
+<div class="row" id="app">
+    <div class="col-xl-4">
+        <!--begin::Stats Widget 1-->
+        <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-4.svg)">
+            <!--begin::Body-->
+            <div class="card-body">
+                <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">欢迎</a>
+
+                <div class="font-weight-bold text-success mt-9 mb-5"></div>
+
+                <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                    {{ user.nickname }}
+                </p>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Stats Widget 1-->
+    </div>
+    <div class="col-xl-4">
+        <!--begin::Stats Widget 2-->
+        <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-2.svg)">
+            <!--begin::Body-->
+            <div class="card-body">
+                <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">上次登录</a>
+
+                <div class="font-weight-bold text-success mt-9 mb-5">[[ from_ts({{ session.get('last_login_time') }}) ]]</div>
+
+                <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                    {{ session.get('last_login_ipaddr') }}（[[ addr.join('') ]]）
+                </p>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Stats Widget 2-->
+    </div>
+    <div class="col-xl-4">
+        <!--begin::Stats Widget 3-->
+        <div class="card card-custom bgi-no-repeat card-border gutter-b card-stretch" style="background-position: right top; background-size: 30% auto; background-image: url(https://static.shkong.com/templates/met_11/assets/media/svg/shapes/abstract-1.svg)">
+
+            <!--begin::body-->
+            <div class="card-body">
+                <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">工会信息</a>
+
+                <div class="font-weight-bold text-success mt-9 mb-5"></div>
+
+                <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                    {% if not clan_groups -%}
+                    <div class="alert alert-custom alert-outline-2x alert-outline-primary fade show mb-5" role="alert">
+                        <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                        <div class="alert-text">你还没有加入任何公会<br />请在你的公会群里发送“加入公会”</div>
+                    </div>
+                    {%- else -%}
+                    {% for group in clan_groups -%}
+                    <a href="{{ url_for('yobot_clan', group_id=group['group_id']) }}">
+                        <button type="button" class="btn btn-primary">公会：{{ group['group_name'] }}</button>
+                    </a>
+                    {% endfor -%}
+                    {%- endif %}
+                </p>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Stats Widget 3-->
+    </div>
+</div>
+<!--end::Row-->
+{% endblock %}
+{% block scripts%}
+<script>
+    if (!Object.defineProperty) {
+        alert('浏览器版本过低');
+    }
+    new Vue({
+        el: '#app',
+        data: {
+            addr: [],
+        },
+        mounted() {
+            var thisvue = this;
+            axios.get('{{ url_for("yobot_api_iplocation", ip=session["last_login_ipaddr"]) }}').then(function (res) {
+                thisvue.addr = res.data;
+            }).catch(function (error) {
+                console.log(error);
+                thisvue.addr = ['未知'];
+            });
+        },
+        methods: {
+            from_ts: function (ts) {
+                if (ts == 0) {
+                    return '-';
+                }
+                var nd = new Date();
+                nd.setTime(ts * 1000);
+                return nd.toLocaleString('chinese', { hour12: false });
+            },
+        },
+        delimiters: ['[[', ']]'],
+    })
+</script>
+{% endblock %}
