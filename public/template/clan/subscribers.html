@@ -1,0 +1,34 @@
+{% extends './base.html' %}
+{% block title %}公会战预约{% endblock %}
+{% block header %}
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/theme-chalk/index.css">
+{% endblock %}
+{% block nav3 %}active{% endblock %}
+{% block nav7 %}active{% endblock %}
+{% block body %}
+<div id="app">
+        <el-tabs type="border-card">
+            <el-tab-pane v-for="bn in 6">
+                <span slot="label">
+                    <el-badge :value="subscribers[bn-1].length" :hidden="subscribers[bn-1].length == 0">[[ bosstag[bn-1] ]]</el-badge>
+                </span>
+                <p v-for="m in subscribers[bn-1]">
+                    [[ find_name(m.qqid) ]]（[[ m.qqid ]]）
+                    <template v-if="m.message">
+                        ：[[ m.message ]]
+                    </template>
+                </p>
+                <p v-if="subscribers[bn-1].length == 0">
+                    没有记录
+                </p>
+            </el-tab-pane>
+        </el-tabs>
+</div>
+{% endblock %}
+{% block scripts%}
+<script>var csrf_token = "{{ session['csrf_token'] }}";</script>
+<script src="{{ url_for('yobot_static', filename='clan/subscribers.js') }}"></script>
+{% endblock %}
