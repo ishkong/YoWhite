@@ -1954,18 +1954,26 @@ class ClanBattle:
                 return await render_template(
                     'unauthorized.html',
                     limit='本公会成员',
+<<<<<<< HEAD
                     uath='无',
                     group_id=group_id,
                     user=User.get_by_id(session['yobot_user']),
                 )
+=======
+                    uath='无')
+>>>>>>> b7d7b4c3f61b5f733fd9e650c1e6a5149be2bb06
             if (user.authority_group >= 100):
                 return await render_template(
                     'unauthorized.html',
                     limit='公会战管理员',
+<<<<<<< HEAD
                     uath='成员',
                     group_id=group_id,
                     user=User.get_by_id(session['yobot_user']),
                 )
+=======
+                    uath='成员')
+>>>>>>> b7d7b4c3f61b5f733fd9e650c1e6a5149be2bb06
             return await render_template(
                 'clan/setting.html',
                 group_id=group_id,
