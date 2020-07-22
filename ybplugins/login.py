@@ -423,6 +423,7 @@ class Login:
                     'group_id': g.group_id,
                     'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
                 } for g in clan_groups],
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
@@ -438,10 +439,21 @@ class Login:
                 if visited_user is None:
                     return '没有此用户', 404
                 visited_user_info = visited_user
+            clan_groups = Clan_member.select(
+                Clan_member.group_id,
+                Clan_group.group_name,
+            ).join(
+                Clan_group,
+                on=(Clan_member.group_id == Clan_group.group_id),
+                attr='info',
+            ).where(
+                Clan_member.qqid == session['yobot_user']
+            )
             return await render_template(
                 'user-info.html',
                 user=visited_user_info,
                 visitor=User.get_by_id(session['yobot_user']),
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
