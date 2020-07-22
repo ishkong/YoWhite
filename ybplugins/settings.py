@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 from quart import Quart, jsonify, redirect, request, session, url_for
 
 from .templating import render_template
-from .ybdata import User, Clan_group
+from .ybdata import User, Clan_group, Clan_member
 
 
 class Setting:
@@ -28,6 +28,16 @@ class Setting:
             if 'yobot_user' not in session:
                 return redirect(url_for('yobot_login', callback=request.path))
             user=User.get_by_id(session['yobot_user'])
+            clan_groups = Clan_member.select(
+                Clan_member.group_id,
+                Clan_group.group_name,
+            ).join(
+                Clan_group,
+                on=(Clan_member.group_id == Clan_group.group_id),
+                attr='info',
+            ).where(
+                Clan_member.qqid == session['yobot_user']
+            )
             if user.authority_group >= 10:
                 return await render_template(
                     'unauthorized.html',
@@ -37,6 +47,7 @@ class Setting:
             return await render_template(
                 'admin/setting.html',
                 user=User.get_by_id(session['yobot_user']),
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
@@ -99,6 +110,16 @@ class Setting:
             if 'yobot_user' not in session:
                 return redirect(url_for('yobot_login', callback=request.path))
             user = User.get_by_id(session['yobot_user'])
+            clan_groups = Clan_member.select(
+                Clan_member.group_id,
+                Clan_group.group_name,
+            ).join(
+                Clan_group,
+                on=(Clan_member.group_id == Clan_group.group_id),
+                attr='info',
+            ).where(
+                Clan_member.qqid == session['yobot_user']
+            )
             if user.authority_group >= 10:
                 return await render_template(
                     'unauthorized.html',
@@ -108,6 +129,7 @@ class Setting:
             return await render_template(
                 'admin/pool-setting.html',
                 user=User.get_by_id(session['yobot_user']),
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
@@ -163,6 +185,16 @@ class Setting:
             if 'yobot_user' not in session:
                 return redirect(url_for('yobot_login', callback=request.path))
             user = User.get_by_id(session['yobot_user'])
+            clan_groups = Clan_member.select(
+                Clan_member.group_id,
+                Clan_group.group_name,
+            ).join(
+                Clan_group,
+                on=(Clan_member.group_id == Clan_group.group_id),
+                attr='info',
+            ).where(
+                Clan_member.qqid == session['yobot_user']
+            )
             if user.authority_group >= 10:
                 return await render_template(
                     'unauthorized.html',
@@ -172,6 +204,7 @@ class Setting:
             return await render_template(
                 'admin/users.html',
                 user=User.get_by_id(session['yobot_user']),
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
@@ -259,6 +292,16 @@ class Setting:
             if 'yobot_user' not in session:
                 return redirect(url_for('yobot_login', callback=request.path))
             user = User.get_by_id(session['yobot_user'])
+            clan_groups = Clan_member.select(
+                Clan_member.group_id,
+                Clan_group.group_name,
+            ).join(
+                Clan_group,
+                on=(Clan_member.group_id == Clan_group.group_id),
+                attr='info',
+            ).where(
+                Clan_member.qqid == session['yobot_user']
+            )
             if user.authority_group >= 10:
                 return await render_template(
                     'unauthorized.html',
@@ -268,6 +311,7 @@ class Setting:
             return await render_template(
                 'admin/groups.html',
                 user=User.get_by_id(session['yobot_user']),
+                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
