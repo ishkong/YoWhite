@@ -9,7 +9,8 @@
 {% block nav3 %}active{% endblock %}
 {% block nav7 %}active{% endblock %}
 {% block body %}
-<div id="app">
+<div id="app" class="card card-custom">
+    <div class="card-body">
         <el-tabs type="border-card">
             <el-tab-pane v-for="bn in 6">
                 <span slot="label">
@@ -26,6 +27,7 @@
                 </p>
             </el-tab-pane>
         </el-tabs>
+    </div>
 </div>
 {% endblock %}
 {% block scripts%}

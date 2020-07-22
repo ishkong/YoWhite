@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends './base.html' %}
 {% block title %}公会管理{% endblock %}
 {% block header %}
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
@@ -6,19 +6,20 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/theme-chalk/index.css">
 {% endblock %}
+{% block nav4 %}active{% endblock %}
+{% block nav8 %}active{% endblock %}
 {% block body %}
     <div id="app">
-        <el-page-header @back="location='..'" content="yobot公会管理"></el-page-header>
-        <el-table :data="groupData" style="width: 100%" stripe>
-            <el-table-column prop="group_id" label="群号" width="100" sortable></el-table-column>
-            <el-table-column prop="group_name" label="群名称" width="150" sortable></el-table-column>
-            <el-table-column prop="game_server" label="游戏区" width="100" sortable></el-table-column>
-            <el-table-column label="详情页" width="30">
+        <el-table :data="groupData" style="width: 100%" stripe  class="table rounded">
+            <el-table-column prop="group_id" label="群号" width="300" sortable></el-table-column>
+            <el-table-column prop="group_name" label="群名称" width="350" sortable></el-table-column>
+            <el-table-column prop="game_server" label="游戏区" width="300" sortable></el-table-column>
+            <el-table-column label="详情页" width="100">
                 <template slot-scope="scope">
                     <a :href="'../../clan/' + scope.row.group_id + '/'"><i class="el-icon-more-outline"></i></a>
                 </template>
             </el-table-column>
-            <el-table-column label="删除" width="30">
+            <el-table-column label="删除" width="100">
                 <template slot-scope="scope">
                     <el-button type="text" @click="delete_group(scope)" icon="el-icon-delete"></el-button>
                 </template>
