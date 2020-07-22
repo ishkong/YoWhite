@@ -10,13 +10,13 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 - 插件版或源码版：
 
-直接覆盖，重启Yobot
+  直接覆盖，**修改template/base.html第6行的{{botname}}为你机器人的名字**，重启Yobot 
 
 - 便携版：
 
-更换插件版或源码版，再进行上述操作
+  更换插件版或源码版，再进行上述操作
 
-或自行替换文件重新打包
+  或自行替换文件重新打包
 
 ## 已知问题 Known issues
 
@@ -28,13 +28,17 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 感谢以下大佬在本项目中提供的支援和帮助
 
+Thanks to the following users for their support and help in this project
+
 [@A-kirami](https://github.com/A-kirami)
 
 [@kaiseixd](https://github.com/kaiseixd)
 
 ## 联系我们 Contact us
 
-yobot后台美化组(Q群)：1143518690
+Yobot后台美化组(Q群)：1143518690
+
+Yobot background beautification group (QQ group):1143518690
 
 ## 相关项目 Related Projects
 
