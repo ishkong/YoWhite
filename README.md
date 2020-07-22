@@ -5,6 +5,8 @@ A template for Yobot
 
 This project is only a template, please use it with [Yobot](https://github.com/pcrbot/yobot)
 
+## 本项目的根目录位于\yobot\src\client\ 请进入此文件夹后再根据本项目文件地址进行替换！
+## The root directory of this project is located at \yobot\src\client\ Please enter this folder and then replace it according to the file address of this project!
 
 ## 如何使用 How to use
 
