@@ -5,6 +5,8 @@ A template for Yobot
 
 This project is only a template, please use it with [Yobot](https://github.com/pcrbot/yobot)
 
+## 本项目的根目录位于\yobot\src\client\ 请进入此文件夹后再根据本项目文件地址进行替换！
+## The root directory of this project is located at \yobot\src\client\ Please enter this folder and then replace it according to the file address of this project!
 
 ## 如何使用 How to use
 
@@ -20,7 +22,9 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 ## 已知问题 Known issues
 
-- 部分页面无法获取到{{ group_id }}导致无法通过导航栏进入工会战页面
+- ~~部分页面无法获取到{{ group_id }}导致无法通过导航栏进入工会战页面~~
+
+- 在没有加入任何工会时无法访问
 
 - 手机访问可能存在无法点出侧边栏
 
