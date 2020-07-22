@@ -16,7 +16,7 @@
         <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <link href="https://static.shkong.com/templates/met_11/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <!--end::Global Theme Styles-->
-        <link rel="shortcut icon" href="https://static.shkong.com/templates/met_11/assets/media/logos/favicon.ico"/>
+        <link rel="shortcut icon" href="{{ url_for('yobot_static', filename='small.ico') }}"/>
         {% block header %}
         {% endblock %}
     </head>
@@ -33,7 +33,7 @@
                 <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed " >
                     <!--begin::Logo-->
                     <a href="/yobot/user/">
-                        <img alt="Logo" src="https://static.shkong.com/templates/met_11/assets/media/logos/logo-letter-12.png" class="max-h-30px"/>
+                        <img alt="Logo" src="{{ url_for('yobot_static', filename='small.ico') }}" class="max-h-30px"/>
                     </a>
                     <!--end::Logo-->
 
@@ -57,7 +57,7 @@
                             <div class="d-none d-lg-flex align-items-center mr-3">
                                 <!--begin::Logo-->
                                 <a href="/yobot/user/" class="mr-20">
-                                    <img alt="Logo" src="https://static.shkong.com/templates/met_11/assets/media/logos/logo-letter-12.png" class="max-h-40px"/>
+                                    <img alt="Logo" src="{{ url_for('yobot_static', filename='small.ico') }}" class="max-h-40px"/>
                                 </a>
                                 <!--end::Logo-->
                             </div>
