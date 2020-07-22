@@ -487,9 +487,20 @@ class Login:
                 if 'yobot_user' not in session:
                     return redirect(url_for('yobot_login', callback=request.path))
                 if request.method == "GET":
+                    clan_groups = Clan_member.select(
+                        Clan_member.group_id,
+                        Clan_group.group_name,
+                    ).join(
+                        Clan_group,
+                        on=(Clan_member.group_id == Clan_group.group_id),
+                        attr='info',
+                    ).where(
+                        Clan_member.qqid == session['yobot_user']
+                    )
                     return await render_template(
                         'password.html',
                         user=User.get_by_id(session['yobot_user']),
+                        group_id=clan_groups[0].group_id,
                     )
 
                 qq = session['yobot_user']
