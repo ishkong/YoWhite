@@ -22,7 +22,9 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 ## 已知问题 Known issues
 
-- 部分页面无法获取到{{ group_id }}导致无法通过导航栏进入工会战页面
+- ~~部分页面无法获取到{{ group_id }}导致无法通过导航栏进入工会战页面~~
+
+- 在没有加入任何工会时无法访问
 
 - 手机访问可能存在无法点出侧边栏
 
