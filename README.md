@@ -30,6 +30,8 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 [@A-kirami](https://github.com/A-kirami)
 
+[@kaiseixd](https://github.com/kaiseixd)
+
 ## 联系我们 Contact us
 
 yobot后台美化组(Q群)：1143518690
@@ -37,3 +39,21 @@ yobot后台美化组(Q群)：1143518690
 ## 相关项目 Related Projects
 
 - [YoCool](https://github.com/A-kirami/YoCool/)
+
+## 展示 Display
+
+首页
+![Index](img/index.png)
+
+用户页
+![User](img/user.png)
+
+管理页
+![Admin](img/admin.png)
+
+工会战
+![Clan_index](img/clan_index.png)
+
+数据统计
+![Clan_stat](img/clan_stat.png)
+
