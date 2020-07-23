@@ -9,12 +9,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
         <!--end::Fonts-->
         <!--begin::Page Vendors Styles(used by this page)-->
-        <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <!--end::Page Vendors Styles-->
         <!--begin::Global Theme Styles(used by all pages)-->
-        <link href="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-        <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-        <link href="https://static.shkong.com/templates/met_11/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <!--end::Global Theme Styles-->
         <link rel="shortcut icon" href="{{ url_for('yobot_static', filename='small.ico') }}"/>
         {% block header %}
@@ -32,7 +32,7 @@
 				<!--begin::Header Mobile-->
                 <div id="kt_header_mobile" class="header-mobile  header-mobile-fixed " >
                     <!--begin::Logo-->
-                    <a href="/yobot/user/">
+                    <a href="{{ url_for('yobot_user') }}">
                         <img alt="Logo" src="{{ url_for('yobot_static', filename='small.ico') }}" class="max-h-30px"/>
                     </a>
                     <!--end::Logo-->
@@ -56,7 +56,7 @@
                             <!--begin::Left-->
                             <div class="d-none d-lg-flex align-items-center mr-3">
                                 <!--begin::Logo-->
-                                <a href="/yobot/user/" class="mr-20">
+                                <a href="{{ url_for('yobot_user') }}" class="mr-20">
                                     <img alt="Logo" src="{{ url_for('yobot_static', filename='small.ico') }}" class="max-h-40px"/>
                                 </a>
                                 <!--end::Logo-->
@@ -84,24 +84,25 @@
 
 				<!--begin::Item-->
 				<li class="nav-item">
-					<a href="yobot/user/{{ qqid }}/" class="nav-link {% block nav2 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_2" role="tab">
+					<a href="#" class="nav-link {% block nav2 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_2" role="tab">
 						<span class="nav-title text-uppercase">个人中心</span>
 						<span class="nav-desc">Personal Center</span>
 					</a>
 				</li>
 				<!--end::Item-->
-
+				{% if group_id != 0 %}
 				<!--begin::Item-->
 				<li class="nav-item">
-					<a href="/yobot/clan/{{ group_id}}/" class="nav-link {% block nav3 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
+					<a href="#" class="nav-link {% block nav3 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
 						<span class="nav-title text-uppercase">工会管理</span>
 						<span class="nav-desc">Union Management</span>
 					</a>
 				</li>
 				<!--end::Item-->
+				{% endif %}
 				{% if user.authority_group < 10 -%}
 				<li class="nav-item">
-					<a href="/yobot/admin/" class="nav-link {% block nav4 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_4" role="tab">
+					<a href="#" class="nav-link {% block nav4 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_4" role="tab">
 						<span class="nav-title text-uppercase">设置中心</span>
 						<span class="nav-desc">Yobot Management</span>
 					</a>
@@ -121,7 +122,7 @@
 							<!--begin::Nav-->
 							<ul class="menu-nav ">
 								<li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/user/" class="menu-link ">
+									<a  href="{{ url_for('yobot_user') }}" class="menu-link ">
 										<span class="menu-text">Dashboard</span>
 									</a>
 								</li>
@@ -143,7 +144,7 @@
 									</a>
 								</li>
                                 <li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/user/reset-password/" class="menu-link ">
+									<a  href="{{ url_for('yobot_reset_pwd') }}" class="menu-link ">
 										<span class="menu-text">修改密码</span>
 									</a>
 								</li>
@@ -153,7 +154,7 @@
 
 						<div class="d-flex align-items-center">
 							<!--begin::Actions-->
-				            <a href="/yobot/logout/" class="btn btn-dark font-weight-bold my-2 my-lg-0">
+				            <a href="{{ url_for('yobot_logout') }}" class="btn btn-dark font-weight-bold my-2 my-lg-0">
 				            	Logout
 				            </a>
 				            <!--end::Actions-->
@@ -167,17 +168,17 @@
 							<!--begin::Nav-->
 							<ul class="menu-nav ">
 								<li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/clan/{{ group_id }}/" class="menu-link ">
+									<a  href="{{ url_for('yobot_clan', group_id=group_id) }}" class="menu-link ">
 										<span class="menu-text">BOSS状态</span>
 									</a>
 								</li>
                                 <li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/clan/{{ group_id }}/subscribers/" class="menu-link ">
+									<a  href="{{ url_for('yobot_clan_subscribers', group_id=group_id) }}" class="menu-link ">
 										<span class="menu-text">出刀预约</span>
 									</a>
 								</li>
                                 <li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/clan/{{ group_id }}/progress/" class="menu-link ">
+									<a  href="{{ url_for('yobot_clan_progress', group_id=group_id) }}" class="menu-link ">
 										<span class="menu-text">工会记录</span>
 									</a>
 								</li>
@@ -190,17 +191,17 @@
                                     <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                         <ul class="menu-subnav">
 											<li class="menu-item "  aria-haspopup="true">
-                                                <a href="/yobot/clan/{{ group_id }}/statistics/" class="menu-link ">
+                                                <a href="{{ url_for('yobot_clan_statistics', group_id=group_id) }}" class="menu-link ">
                                                     <span class="menu-text">数据分析</span>
                                                 </a>
                                             </li>
                                             <li class="menu-item "  aria-haspopup="true">
-                                                <a href="/yobot/clan/{{ group_id }}/statistics/1/" class="menu-link ">
+                                                <a href="{{ url_for('yobot_clan_boss', group_id=group_id, sid=1) }}" class="menu-link ">
                                                     <span class="menu-text">出刀顺序表</span>
                                                 </a>
                                             </li>
                                             <li class="menu-item "  aria-haspopup="true">
-                                                <a href="/yobot/clan/{{ group_id }}/statistics/2/" class="menu-link ">
+                                                <a href="{{ url_for('yobot_clan_boss', group_id=group_id, sid=2) }}" class="menu-link ">
                                                     <span class="menu-text">数据图表</span>
                                                 </a>
                                             </li>
@@ -213,7 +214,7 @@
                                     </div>
                                 </li>
                                 <li class="menu-item"  aria-haspopup="true">
-									<a  href="/yobot/clan/{{ group_id }}/{{ user.qqid }}/" class="menu-link ">
+									<a  href="{{ url_for('yobot_clan_user', group_id=group_id, qqid=user.qqid) }}" class="menu-link ">
 										<span class="menu-text">个人记录</span>
 									</a>
 								</li>
@@ -229,17 +230,17 @@
 							<!--begin::Nav-->
 							<ul class="menu-nav ">
 								<li class="menu-item"  aria-haspopup="true">
-									<a href="/yobot/admin/setting/" class="menu-link ">
+									<a href="{{ url_for('yobot_setting') }}" class="menu-link ">
 										<span class="menu-text">Yobot设置</span>
 									</a>
 								</li>
 								<li class="menu-item"  aria-haspopup="true">
-									<a href="/yobot/admin/users/" class="menu-link ">
+									<a href="{{ url_for('yobot_users_managing') }}" class="menu-link ">
 										<span class="menu-text">用户管理</span>
 									</a>
 								</li>
 								<li class="menu-item"  aria-haspopup="true">
-									<a href="/yobot/admin/groups/" class="menu-link ">
+									<a href="{{ url_for('yobot_groups_managing') }}" class="menu-link ">
 										<span class="menu-text">群组管理</span>
 									</a>
 								</li>
@@ -290,7 +291,6 @@
 
 		<!--begin::Nav-->
 		<div class="nav nav-dark order-1 order-md-2">
-			<a href="https://github.com/Ice-Cirno/HoshinoBot" target="_blank" class="nav-link pl-3 pr-0">Hoshino</a>
 			<a href="https://github.com/pcrbot/yobot" target="_blank" class="nav-link pl-3 pr-0">Yobot</a>
 			<a href="https://github.com/shkongzhu/YoWhite" target="_blank" class="nav-link pl-3 pr-0">Themes</a>
 		</div>
@@ -380,17 +380,17 @@
         <!--end::Global Config-->
 
     	<!--begin::Global Theme Bundle(used by all pages)-->
-    	    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
-		    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-		    	   <script src="https://static.shkong.com/templates/met_11/assets/js/scripts.bundle.js?v=7.0.6"></script>
+    	    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/js/scripts.bundle.js?v=7.0.6"></script>
 				<!--end::Global Theme Bundle-->
 
                     <!--begin::Page Vendors(used by this page)-->
-                            <script src="https://static.shkong.com/templates/met_11/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
                         <!--end::Page Vendors-->
 
                     <!--begin::Page Scripts(used by this page)-->
-                            <script src="https://static.shkong.com/templates/met_11/assets/js/pages/widgets.js?v=7.0.6"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/js/pages/widgets.js?v=7.0.6"></script>
                         <!--end::Page Scripts-->
         {% block scripts%}
         {% endblock %}
