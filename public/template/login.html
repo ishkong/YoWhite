@@ -3,22 +3,22 @@
     <!--begin::Head-->
     <head>
         <meta charset="utf-8"/>
-        <title>Metronic | Login Page 1</title>
+        <title>{{ botname }} | Login</title>
         <meta name="description" content="Login page example"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <!--begin::Fonts-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>        <!--end::Fonts-->
                     <!--begin::Page Custom Styles(used by this page)-->
-                             <link href="https://static.shkong.com/templates/met_11/assets/css/pages/login/login-1.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+                             <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/css/pages/login/login-1.css?v=7.0.6" rel="stylesheet" type="text/css"/>
                         <!--end::Page Custom Styles-->
         <!--begin::Global Theme Styles(used by all pages)-->
-                    <link href="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-                    <link href="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-                    <link href="https://static.shkong.com/templates/met_11/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+                    <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+                    <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+                    <link href="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
                 <!--end::Global Theme Styles-->
         <!--begin::Layout Themes(used by all pages)-->
                 <!--end::Layout Themes-->
-        <link rel="shortcut icon" href="https://static.shkong.com/templates/met_11/assets/media/logos/favicon.ico"/>
+        <link rel="shortcut icon" href="{{ url_for('yobot_static', filename='small.ico') }}"/>
         <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js"></script>
         <script src="{{ url_for('yobot_static', filename='password.js') }}"></script>
@@ -59,7 +59,7 @@
         <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
             <!--begin::Aside header-->
             <a href="#" class="text-center mb-10">
-				<img src="https://static.shkong.com/templates/met_11/assets/media/logos/logo-letter-1.png" class="max-h-70px" alt=""/>
+				<img src="{{ url_for('yobot_static', filename='small.ico') }}" class="max-h-70px" alt=""/>
 			</a>
             <!--end::Aside header-->
 
@@ -255,14 +255,14 @@
     })
 </script>
     	<!--begin::Global Theme Bundle(used by all pages)-->
-    	    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
-		    	   <script src="https://static.shkong.com/templates/met_11/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-		    	   <script src="https://static.shkong.com/templates/met_11/assets/js/scripts.bundle.js?v=7.0.6"></script>
+    	    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+		    	   <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/js/scripts.bundle.js?v=7.0.6"></script>
 				<!--end::Global Theme Bundle-->
 
 
                     <!--begin::Page Scripts(used by this page)-->
-                            <script src="https://static.shkong.com/templates/met_11/assets/js/pages/custom/login/login-general.js?v=7.0.6"></script>
+                            <script src="https://cdn.jsdelivr.net/gh/shkongzhu/yowhite@master/assets/js/pages/custom/login/login-general.js?v=7.0.6"></script>
                         <!--end::Page Scripts-->
             </body>
     <!--end::Body-->
