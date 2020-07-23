@@ -2172,7 +2172,7 @@ class ClanBattle:
             group = Clan_group.get_or_none(group_id=group_id)
             if group is None:
                 return await render_template('404.html', item='公会'), 404
-            if not(group.privacy & 0x1):
+            if 'yobot_user' in session:
                 if 'yobot_user' not in session:
                     return redirect(url_for('yobot_login', callback=request.path))
                 user = User.get_by_id(session['yobot_user'])
@@ -2180,8 +2180,16 @@ class ClanBattle:
                     group_id=group_id, qqid=session['yobot_user'])
                 if (not is_member and user.authority_group >= 10):
                     return await render_template('clan/unauthorized.html')
-            return await render_template(
-                'clan/progress.html',
-                user=User.get_by_id(session['yobot_user']),
-                group_id=group_id,
-            )
+                return await render_template(
+                    'clan/progress.html',
+                    user=User.get_by_id(session['yobot_user']),
+                    group_id=group_id,
+                )
+            else:
+                if not (group.privacy & 0x1):
+                    return await render_template('clan/public_unauthorized.html')
+                else:
+                    return await render_template(
+                        'clan/public_progress.html',
+                        group_id=group_id,
+                    )

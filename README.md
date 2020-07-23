@@ -38,6 +38,8 @@ Thanks to the following users for their support and help in this project
 
 [@kaiseixd](https://github.com/kaiseixd)
 
+[@xuexue49](https://github.com/xuexue49)
+
 ## 联系我们 Contact us
 
 Yobot后台美化组(Q群)：1143518690
