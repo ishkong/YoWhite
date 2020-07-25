@@ -90,7 +90,7 @@
 					</a>
 				</li>
 				<!--end::Item-->
-				{% if group_id != 0 %}
+				{% if clan_groups or group_id %}
 				<!--begin::Item-->
 				<li class="nav-item">
 					<a href="#" class="nav-link {% block nav3 %}{% endblock %}" data-toggle="tab" data-target="#yobot_header_tab_3" role="tab">
@@ -161,7 +161,10 @@
 						</div>
 					</div>
 					<!--begin::Tab Pane-->
-
+					{% if clan_groups or group_id %}
+					{% if not group_id %}
+					{% set group_id = clan_groups[0].group_id %}
+					{% endif %}
                     <!--begin::Tab Pane-->
 					<div class="tab-pane {% block nav7 %}{% endblock %}" id="yobot_header_tab_3">
                         <div class="header-menu header-menu-mobile  header-menu-layout-default" id="kt_header_menu">
@@ -223,7 +226,7 @@
 						</div>
 					</div>
 					<!--begin::Tab Pane-->
-
+					{% endif %}
                     <!--begin::Tab Pane-->
 					<div class="tab-pane {% block nav8 %}{% endblock %}" id="yobot_header_tab_4">
 						<div class="header-menu header-menu-mobile  header-menu-layout-default">
@@ -249,7 +252,6 @@
 						</div>
 					</div>
 					<!--begin::Tab Pane-->
-
 				</div>
 				<!--end::Tab Content-->
 			</div>
@@ -270,7 +272,7 @@
 							<!--begin::Dashboard-->
                             {% block body %}
                             {% endblock %}
-<!--end::Dashboard-->
+							<!--end::Dashboard-->
 						</div>
 						<!--end::Content-->
 					</div>
@@ -279,26 +281,26 @@
 				<!--end::Container-->
 
 				<!--begin::Footer-->
-<div class="footer py-4 d-flex flex-lg-column " id="kt_footer">
-	<!--begin::Container-->
-	<div class=" container  d-flex flex-column flex-md-row align-items-center justify-content-between">
-		<!--begin::Copyright-->
-		<div class="text-dark order-2 order-md-1">
-			<span class="text-muted font-weight-bold mr-2">2020&copy;</span>
-			<a href="https://www.shkong.com/" target="_blank" class="text-dark-75 text-hover-primary">Shkong</a>
-		</div>
-		<!--end::Copyright-->
+				<div class="footer py-4 d-flex flex-lg-column " id="kt_footer">
+					<!--begin::Container-->
+					<div class=" container  d-flex flex-column flex-md-row align-items-center justify-content-between">
+						<!--begin::Copyright-->
+						<div class="text-dark order-2 order-md-1">
+							<span class="text-muted font-weight-bold mr-2">2020&copy;</span>
+							<a href="https://www.shkong.com/" target="_blank" class="text-dark-75 text-hover-primary">Shkong</a>
+						</div>
+						<!--end::Copyright-->
 
-		<!--begin::Nav-->
-		<div class="nav nav-dark order-1 order-md-2">
-			<a href="https://github.com/pcrbot/yobot" target="_blank" class="nav-link pl-3 pr-0">Yobot</a>
-			<a href="https://github.com/shkongzhu/YoWhite" target="_blank" class="nav-link pl-3 pr-0">Themes</a>
-		</div>
-		<!--end::Nav-->
-	</div>
-	<!--end::Container-->
-</div>
-<!--end::Footer-->
+						<!--begin::Nav-->
+						<div class="nav nav-dark order-1 order-md-2">
+							<a href="https://github.com/pcrbot/yobot" target="_blank" class="nav-link pl-3 pr-0">Yobot</a>
+							<a href="https://github.com/shkongzhu/YoWhite" target="_blank" class="nav-link pl-3 pr-0">Themes</a>
+						</div>
+						<!--end::Nav-->
+					</div>
+					<!--end::Container-->
+				</div>
+				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>

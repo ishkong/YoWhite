@@ -47,7 +47,10 @@ class Setting:
             return await render_template(
                 'admin/setting.html',
                 user=User.get_by_id(session['yobot_user']),
-                group_id=clan_groups[0].group_id,
+                clan_groups=[{
+                    'group_id': g.group_id,
+                    'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                } for g in clan_groups],
             )
 
         @app.route(
@@ -129,7 +132,10 @@ class Setting:
             return await render_template(
                 'admin/pool-setting.html',
                 user=User.get_by_id(session['yobot_user']),
-                group_id=clan_groups[0].group_id,
+                clan_groups=[{
+                    'group_id': g.group_id,
+                    'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                } for g in clan_groups],
             )
 
         @app.route(
@@ -204,7 +210,10 @@ class Setting:
             return await render_template(
                 'admin/users.html',
                 user=User.get_by_id(session['yobot_user']),
-                group_id=clan_groups[0].group_id,
+                clan_groups=[{
+                    'group_id': g.group_id,
+                    'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                } for g in clan_groups],
             )
 
         @app.route(
@@ -311,7 +320,10 @@ class Setting:
             return await render_template(
                 'admin/groups.html',
                 user=User.get_by_id(session['yobot_user']),
-                group_id=clan_groups[0].group_id,
+                clan_groups=[{
+                    'group_id': g.group_id,
+                    'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                } for g in clan_groups],
             )
 
         @app.route(

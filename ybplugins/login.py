@@ -423,7 +423,6 @@ class Login:
                     'group_id': g.group_id,
                     'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
                 } for g in clan_groups],
-                group_id=clan_groups[0].group_id,
             )
 
         @app.route(
@@ -453,7 +452,10 @@ class Login:
                 'user-info.html',
                 user=visited_user_info,
                 visitor=User.get_by_id(session['yobot_user']),
-                group_id=clan_groups[0].group_id,
+                clan_groups=[{
+                    'group_id': g.group_id,
+                    'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                } for g in clan_groups],
             )
 
         @app.route(
@@ -500,7 +502,10 @@ class Login:
                     return await render_template(
                         'password.html',
                         user=User.get_by_id(session['yobot_user']),
-                        group_id=clan_groups[0].group_id,
+                        clan_groups=[{
+                            'group_id': g.group_id,
+                            'group_name': (getattr(getattr(g, 'info', None), 'group_name', None) or g.group_id)
+                        } for g in clan_groups],
                     )
 
                 qq = session['yobot_user']
