@@ -98,10 +98,14 @@
         methods: {
             edit_nickname: function(event){
                 var thisvue = this;
+                if (this.nickname === '') {
+                    Swal.fire("错误", "昵称不能为空！", "error");
+                    return ;
+                }
                 axios.put('{{ url_for("yobot_user_info_nickname", qqid=user.qqid) }}',{nickname: thisvue.nickname}).then(function (res) {
                     thisvue.edit = false;
                 }).catch(function (error) {
-                    alert('改名失败');
+                    Swal.fire("错误", "改名失败", "error");
                     console.log(error);
                 })
             },
