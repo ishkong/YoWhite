@@ -39,10 +39,14 @@ class Setting:
                 Clan_member.qqid == session['yobot_user']
             )
             if user.authority_group >= 10:
+                if not user.authority_group >= 100:
+                    uathname = '公会战管理员'
+                else:
+                    uathname = '成员'
                 return await render_template(
                     'unauthorized.html',
                     limit='主人',
-                    uath=user.authority_group,
+                    uath=uathname,
                 )
             return await render_template(
                 'admin/setting.html',
@@ -124,10 +128,14 @@ class Setting:
                 Clan_member.qqid == session['yobot_user']
             )
             if user.authority_group >= 10:
+                if not user.authority_group >= 100:
+                    uathname = '公会战管理员'
+                else:
+                    uathname = '成员'
                 return await render_template(
                     'unauthorized.html',
                     limit='主人',
-                    uath=user.authority_group,
+                    uath=uathname,
                 )
             return await render_template(
                 'admin/pool-setting.html',
@@ -202,10 +210,14 @@ class Setting:
                 Clan_member.qqid == session['yobot_user']
             )
             if user.authority_group >= 10:
+                if not user.authority_group >= 100:
+                    uathname = '公会战管理员'
+                else:
+                    uathname = '成员'
                 return await render_template(
                     'unauthorized.html',
                     limit='主人',
-                    uath=user.authority_group,
+                    uath=uathname,
                 )
             return await render_template(
                 'admin/users.html',
@@ -245,19 +257,25 @@ class Setting:
                     )
                 action = req['action']
                 if action == 'get_data':
-                    users = []
-                    for user in User.select().where(
-                        User.deleted == False,
-                    ):
-                        users.append({
-                            'qqid': user.qqid,
-                            'nickname': user.nickname,
-                            'clan_group_id': user.clan_group_id,
-                            'authority_group': user.authority_group,
-                            'last_login_time': user.last_login_time,
-                            'last_login_ipaddr': user.last_login_ipaddr,
+                     def _get_all_users():
+                        users = User.select(
+                            User.qqid,
+                            User.nickname,
+                            User.clan_group_id,
+                            User.authority_group,
+                            User.last_login_time,
+                            User.last_login_ipaddr,
+                        ).where(
+                            User.deleted == False,
+                        )
+                        return json.dumps({
+                            'code': 0,
+                            'data': [model_to_dict(u) for u in users],
                         })
-                    return jsonify(code=0, data=users)
+                    return await asyncio.get_running_loop().run_in_executor(
+                        None,
+                        _get_all_users,
+                    )
                 elif action == 'modify_user':
                     data = req['data']
                     m_user: User = User.get_or_none(qqid=data['qqid'])
@@ -312,10 +330,14 @@ class Setting:
                 Clan_member.qqid == session['yobot_user']
             )
             if user.authority_group >= 10:
+                if not user.authority_group >= 100:
+                    uathname = '公会战管理员'
+                else:
+                    uathname = '成员'
                 return await render_template(
                     'unauthorized.html',
                     limit='主人',
-                    uath=user.authority_group,
+                    uath=uathname,
                 )
             return await render_template(
                 'admin/groups.html',

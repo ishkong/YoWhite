@@ -12,7 +12,7 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 - 插件版或源码版：
 
-  直接覆盖，**修改template/base.html第6行的{{botname}}为你机器人的名字**，重启Yobot 
+  直接覆盖，**修改template/base.html和login.html的第6行{{botname}}为你机器人的名字**，重启Yobot 
 
 - 便携版：
 
