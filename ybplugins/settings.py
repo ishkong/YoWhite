@@ -259,7 +259,7 @@ class Setting:
                     )
                 action = req['action']
                 if action == 'get_data':
-                     def _get_all_users():
+                    def _get_all_users():
                         users = User.select(
                             User.qqid,
                             User.nickname,
@@ -278,6 +278,7 @@ class Setting:
                         None,
                         _get_all_users,
                     )
+                    
                 elif action == 'modify_user':
                     data = req['data']
                     m_user: User = User.get_or_none(qqid=data['qqid'])
