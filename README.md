@@ -5,16 +5,13 @@ A template for Yobot
 
 This project is only a template, please use it with [Yobot](https://github.com/pcrbot/yobot)
 
-### 受酷Q停运影响，Yobot可能会提前重构，本模板在重构完成前将不会更新
-### Affected by the outage of CoolQ, Yobot may refactor in advance, and this template will not be updated until the refactoring is completed
-
 ## 注意事项
 
 ### 本项目的根目录位于\yobot\src\client\ 请进入此文件夹后再根据本项目文件地址进行替换！
 ### The root directory of this project is located at \yobot\src\client\ Please enter this folder and then replace it according to the file address of this project!
 
-### 本模板仅支持Yobot3.6.3 - Yobot3.6.4-beta3
-### This template only supports Yobot3.6.3-Yobot3.6.4-beta3
+### 本模板仅支持Yobot3.6.4-beta4 - Yobot3.6.4-rc2
+### This template only supports Yobot3.6.4-beta4 - Yobot3.6.4-rc2
 
 ## 如何使用 How to use
 
@@ -30,11 +27,7 @@ This project is only a template, please use it with [Yobot](https://github.com/p
 
 ## 已知问题 Known issues
 
-- ~~部分页面无法获取到{{ group_id }}导致无法通过导航栏进入工会战页面~~
-
-- ~~在没有加入任何工会时无法访问~~
-
-- ~~手机访问可能存在无法点出侧边栏~~
+暂无
 
 ## 代码贡献 Code contribution
 
